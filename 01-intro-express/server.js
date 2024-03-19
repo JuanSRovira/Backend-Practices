@@ -1,6 +1,8 @@
-// #    Llamar a las bibliotecas de express (importar)
+// #    Llamar a las bibliotecas de express (importar) const nombre de la variable +Router = require, que llama al archivo, + la ubicacion del archivo
 const  express = require ('express');
-const petsRouter = require('./API/V1/pets')
+const petsRouter = require('./pets')
+const cakeRouter = require('./API/V1/cakes') 
+
 
 //# Crear la instancia express  (crear una aplicacion )
 const app = express()
@@ -16,8 +18,12 @@ app.use(express.json());
 app.get ('/', (request, response) => {
     response.send('Hola Mundo')
 })
-
+//# Importar las rutas en otros archivos, con ayuda del router (que esta dentro del archivo importado)
 app.use(petsRouter)
+app.use(cakeRouter)
+
+//ERROR MIO, lo que importamos se manda a llamar aqui, mi error estaba en que coloque app.use(cakeRouter),
+//cuando lo que habia importado era (app.useCounter), renombre el archivo importado y el app.use 
 
 //# Inicializar el servidor 
 app.listen(3000, () => {
