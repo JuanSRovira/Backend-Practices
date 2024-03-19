@@ -1,5 +1,6 @@
 // #    Llamar a las bibliotecas de express (importar)
 const  express = require ('express');
+const petsRouter = require('./API/V1/pets')
 
 //# Crear la instancia express  (crear una aplicacion )
 const app = express()
@@ -15,6 +16,8 @@ app.use(express.json());
 app.get ('/', (request, response) => {
     response.send('Hola Mundo')
 })
+
+app.use(petsRouter)
 
 //# Inicializar el servidor 
 app.listen(3000, () => {
