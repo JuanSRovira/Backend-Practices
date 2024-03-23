@@ -252,3 +252,5 @@ exports.seed = async function (knex) {
     }
   ])
 }
+// Para agregar estos datos a la base de datos se coloca en la terminal: knex seed:run
+// Hice estos datos con la pagina json.ai
