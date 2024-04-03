@@ -6,7 +6,6 @@ const createHome = (req, res) => {
   // Aquí yo debería crear mi home
   // res.send({ message: 'Home created (FAKE)' })
   ModelHomes.create(req.body)
-    .then(req.body)
     .then((result) => {
       res.status(201).send({ message: 'Home created', data: result })
     })
@@ -17,7 +16,16 @@ const createHome = (req, res) => {
 
 const findAllHomes = (req, res) => {
   ModelHomes.findAll(req.body)
-    .then(req.body)
+    .then((result) => {
+      res.status(200).send(result)
+    })
+    .catch((error) => {
+      res.status(400).send({ message: 'Error listing Homes', error })
+    })
+}
+
+const findOneHome = (req, res) => {
+  ModelHomes.FindOne(req.params.houseId)
     .then((result) => {
       res.status(200).send(result)
     })
@@ -27,5 +35,5 @@ const findAllHomes = (req, res) => {
 }
 
 module.exports = {
-  createHome, findAllHomes
+  createHome, findAllHomes, findOneHome
 }
