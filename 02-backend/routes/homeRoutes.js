@@ -5,6 +5,6 @@ const homeController = require('../controllers/homecontroller')
 
 // Si la ruta es /homes, entonces se ejecuta el controlador homeController.createHome
 
-router.get('/homes', homeController.createHome)
+router.post('/homes', homeController.createHome)
 
 module.exports = router
