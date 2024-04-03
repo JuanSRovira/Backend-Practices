@@ -13,7 +13,12 @@ const create = (body) => {
     .into('homes') // A donde voy a mandar esos datos (el homes debia estar en comillas)
     .returning(['house_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])// ¿Que quiero que me regrese?
 }
-
+const findAll = () => {
+  return knex
+    .select('*')
+    .from('homes')
+    .where('active', true) // Traemos solo los campos a los que no hayamos hecho soft delete
+}
 module.exports = {
-  create
+  create, findAll
 }
