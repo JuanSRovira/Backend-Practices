@@ -36,6 +36,20 @@ const update = (houseId, body) => {
     .returning(['house_id', 'title', 'description', 'guests', 'address', 'rental_price', 'fk_user', 'active', 'created_at'])
 }
 
+// BORRAR REGISTRO REAL
+const destroy = (houseId) => {
+  return knex
+    .del() // del, porque del es una palabra reservada en JS
+    .from('homes')
+    .where({ house_id: houseId })
+}
+// BORRADO LOGICO
+const softDelete = (houseId) => {
+  return knex
+    .update({ active: false })
+    .from('homes')
+    .where({ house_id: houseId })
+}
 module.exports = {
-  create, findAll, FindOne, update
+  create, findAll, FindOne, update, destroy, softDelete
 }
